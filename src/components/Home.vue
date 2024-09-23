@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { defineProps } from 'vue';
 import { format } from 'date-fns';
 
@@ -17,7 +17,7 @@ const props = defineProps({
     <div v-if="latestPrice" class="tw-flex tw-flex-auto tw-flex-col animated fadeIn">
 
       <div class="tw-flex tw-flex-auto">
-        <h4>Date: {{ latestPriceDate }}</h4>
+<!--        <h4>Date: {{ latestPriceDate }}</h4>-->
 <!--        <h4>Time: {{ latestPriceDate }}</h4>-->
       </div>
 

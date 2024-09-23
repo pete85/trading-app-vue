@@ -27,7 +27,7 @@
   </footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import Home from '@/components/Home.vue';
 import Charts from "@/components/Charts.vue";
