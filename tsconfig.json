@@ -1,5 +1,4 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
   "compilerOptions": {
     "strict": true,  // Enables strict type-checking
