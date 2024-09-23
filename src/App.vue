@@ -31,6 +31,7 @@
 import { ref, computed, onMounted } from 'vue';
 import Home from '@/components/Home.vue';
 import Charts from "@/components/Charts.vue";
+import { BitcoinPriceIndex } from '@/interfaces/trading-data';
 
 const currentTime = ref(new Date().toLocaleTimeString());
 const prices = ref([]);
