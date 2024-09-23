@@ -1,47 +1,26 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import Home from "@/components/Home.vue";
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <header class="tw-flex tw-flex-auto tw-flex-col tw-items-center tw-justify-center tw-px-5">
+    <div class="tw-flex tw-flex-auto tw-items-center">
+      <div class="tw-p-1">
+        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="50" height="50"/>
+      </div>
+      <div>
+        <h1 class="tw-mb-0 tw-text-white">Trading App</h1>
+      </div>
     </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <Home/>
   </main>
+
+  <footer>
+    <div class="tw-flex tw-flex-auto tw-flex-col tw-p-5">
+      <h4 class="tw-text-white">Author: <span>Piotr Furmanek</span></h4>
+    </div>
+  </footer>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
