@@ -34,7 +34,7 @@ import Charts from "@/components/Charts.vue";
 import { BitcoinPriceIndex } from '@/interfaces/trading-data';
 
 const currentTime = ref(new Date().toLocaleTimeString());
-const prices = ref([]);
+const prices = ref<BitcoinPriceIndex | []>([]);
 const latestPrice = computed(() => prices.value.length > 0 ? prices.value[prices.value.length - 1] : null);
 
 const updateTime = () => {
@@ -45,7 +45,7 @@ const updateTime = () => {
 const fetchData = async () => {
   try {
     const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
-    const data = await response.json();
+    const data: BitcoinPriceIndex = await response.json();
     prices.value.push(data);
   } catch (error) {
     console.error('Error fetching data:', error);
