@@ -24,16 +24,38 @@ const latestPriceDate = computed(() => {
   return 'Invalid date'; // Fallback value if date is invalid
 });
 
-const latestPriceTime = computed(() => {
-  if (props.latestPrice) {
-    const parsedDate = parseCustomDate(props.latestPrice.time.updateduk);
-
-    if (parsedDate) {
-      return format(parsedDate, 'HH:mm:ss');  // Format time as '09:49:00'
-    }
-  }
-  return 'Invalid time'; // Fallback value if time is invalid
-});
+// const latestPriceTime = computed(() => {
+//   if (props.latestPrice) {
+//     const parsedDate = parseCustomDate(props.latestPrice.time.updateduk);
+//
+//     if (parsedDate) {
+//       return format(parsedDate, 'HH:mm:ss');  // Format time as '09:49:00'
+//     }
+//   }
+//   return 'Invalid time'; // Fallback value if time is invalid
+// });
+//
+// const latestPriceDateUTC = computed(() => {
+//   if (props.latestPrice) {
+//     const parsedDate = parseCustomDate(props.latestPrice.time.updated);
+//
+//     if (parsedDate) {
+//       return format(parsedDate, 'd MMMM yyyy');  // Format date as '24 September 2024'
+//     }
+//   }
+//   return 'Invalid date'; // Fallback value if date is invalid
+// });
+//
+// const latestPriceTimeUTC = computed(() => {
+//   if (props.latestPrice) {
+//     const parsedDate = parseCustomDate(props.latestPrice.time.updated);
+//
+//     if (parsedDate) {
+//       return format(parsedDate, 'HH:mm:ss');  // Format time as '09:49:00'
+//     }
+//   }
+//   return 'Invalid time'; // Fallback value if time is invalid
+// });
 
 const formattedUSD = computed(() => {
   if (props.latestPrice) {
@@ -58,36 +80,31 @@ const formattedEUR = computed(() => {
 </script>
 
 <template>
-  <div class="tw-flex tw-flex-auto tw-flex-col animated fadeIn">
+  <div class="tw-flex tw-flex-auto tw-flex-col tw-items-center animated fadeIn">
     <h2>Latest Bitcoin Price</h2>
     <div v-if="latestPrice" class="tw-flex tw-flex-auto tw-flex-col animated fadeIn">
 
-      <div class="tw-flex tw-flex-col tw-flex-auto tw-gap-2">
-        <h4 v-if="latestPriceDate">
-          <span class="tw-inline-block tw-font-light tw-w-20">Date:</span>
-          <span>{{ latestPriceDate }}</span></h4>
-        <h4 v-if="latestPriceTime">
-          <span class="tw-inline-block tw-font-light tw-w-20">Time:</span>
-          <span>{{ latestPriceTime }}</span>
-        </h4>
+      <div class="prices-overview tw-flex tw-flex-col tw-flex-auto tw-gap-2 tw-items-center">
+        <h4>{{ props.latestPrice.time.updated }}</h4>
+        <h4>{{ props.latestPrice.time.updateduk }}</h4>
 
-        <div class="tw-flex tw-flex-auto tw-items-center">
+        <div class="tw-flex tw-flex-auto tw-items-center tw-justify-between">
           <div class="tw-flex tw-w-20 tw-items-start tw-justify-start">
             <img src="../assets/images/great-britain-50.png" alt="UK flag"/>
           </div>
           <h4>{{ formattedGBP }}</h4>
         </div>
 
-        <div class="tw-flex tw-flex-auto tw-items-center">
+        <div class="tw-flex tw-flex-auto tw-items-center tw-justify-between">
           <div class="tw-flex tw-w-20 tw-items-start tw-justify-start">
             <img src="../assets/images/usa-50.png" alt="US flag"/>
           </div>
           <h4>{{ formattedUSD }}</h4>
         </div>
 
-        <div class="tw-flex tw-flex-auto tw-items-center">
+        <div class="tw-flex tw-flex-auto tw-items-center tw-justify-between">
           <div class="tw-flex tw-w-20 tw-items-start tw-justify-start">
-            <img src="../assets/images/eu-48.png" alt="EU flag"/>
+            <img src="../assets/images/eu-48.png" alt="EU flag" class="tw-size-[50px]"/>
           </div>
           <h4>{{ formattedEUR }}</h4>
         </div>

@@ -11,8 +11,8 @@
   </header>
 
   <main class="tw-flex tw-flex-auto tw-flex-col md:tw-flex-row tw-items-center tw-justify-center tw-p-5 tw-gap-5">
-    <Home :latestPrice="latestPrice" class="tw-flex tw-basis-0 tw-flex-grow-[3]" />
-    <Charts :prices="prices" class="tw-flex tw-basis-0 tw-flex-grow-[7]" />
+    <Home :latestPrice="latestPrice" class="tw-flex tw-basis-0 tw-flex-grow-[4]" />
+    <Charts :prices="prices" class="tw-flex tw-basis-0 tw-flex-grow-[6]" />
   </main>
 
   <footer class="tw-flex tw-flex-auto tw-flex-col tw-items-center tw-justify-center">
