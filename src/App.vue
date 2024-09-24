@@ -10,9 +10,9 @@
     </div>
   </header>
 
-  <main class="tw-flex tw-flex-auto tw-flex-col md:tw-flex-row tw-items-center tw-justify-center tw-p-5 tw-gap-5">
-    <Home :latestPrice="latestPrice" class="tw-flex tw-basis-0 tw-flex-grow-[4]" />
-    <Charts :prices="prices" class="tw-flex tw-basis-0 tw-flex-grow-[6]" />
+  <main class="tw-flex tw-flex-auto tw-flex-col lg:tw-flex-row tw-items-center tw-justify-center tw-p-5 tw-gap-4">
+    <Home :latestPrice="latestPrice" class="tw-flex tw-basis-0 tw-flex-grow-[4]" v-memo="[latestPrice]" />
+    <Charts :prices="prices" class="tw-flex tw-basis-0 tw-flex-grow-[6]" v-memo="[prices]" />
   </main>
 
   <footer class="tw-flex tw-flex-auto tw-flex-col tw-items-center tw-justify-center">
@@ -39,6 +39,7 @@ const latestPrice = computed(() => prices.value.length > 0 ? prices.value[prices
 
 const updateTime = () => {
   currentTime.value = new Date().toLocaleTimeString();
+  requestAnimationFrame(updateTime);
 };
 
 // Function to fetch data from the API
@@ -47,18 +48,22 @@ const fetchData = async () => {
     const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
     const data: BitcoinPriceIndex = await response.json();
 
-    // Create a new array with the new data appended
-    prices.value = [...prices.value, data];
+    // Limit array size to 10
+    if (prices.value.length >= 10) {
+      prices.value.shift(); // Remove the oldest data
+    }
 
+    prices.value = [...prices.value, data];
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
 
+
 // On component mount, fetch data and set an interval
 onMounted(() => {
   fetchData(); // Fetch once on load
-  setInterval(fetchData, 30000); // Fetch every 15 seconds
+  setInterval(fetchData, 25000); // Fetch every 20 seconds
   setInterval(updateTime, 1000);
 });
 </script>

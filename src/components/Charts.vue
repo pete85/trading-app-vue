@@ -1,12 +1,24 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { Line } from 'vue-chartjs';
-import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
+import {computed, ref, watch, onMounted, onUnmounted} from 'vue';
+import {Line} from 'vue-chartjs';
+import {
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip
+} from 'chart.js';
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '../../tailwind.config';
 
-// Register necessary chart elements
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement);
 
-// Define props
+const fullTailwindConfig = resolveConfig(tailwindConfig);
+const innerWidth = ref(window.innerWidth);
+const innerHeight = ref(window.innerHeight);
 const props = defineProps({
   prices: {
     type: Array,
@@ -14,13 +26,25 @@ const props = defineProps({
   }
 });
 
-// Helper function to generate chart data from props
+/**
+ * Helper function to generate chart data from props
+ * @param pricesArray
+ */
 const generateChartData = (pricesArray) => {
-  const labels = pricesArray.map(price => price.time.updateduk); // Use updateduk as labels (X-axis)
+  let labels = [...new Set(pricesArray.map(price => {
+    const timeString = price.time.updateduk.split(' at ')[1];
+    return timeString.split(' ')[0];
+  }))];
 
-  const usdData = pricesArray.map(price => price.bpi.USD.rate_float);  // USD rates
-  const gbpData = pricesArray.map(price => price.bpi.GBP.rate_float);  // GBP rates
-  const eurData = pricesArray.map(price => price.bpi.EUR.rate_float);  // EUR rates
+  if (labels.length > 5) {
+    labels = labels.slice(-5);
+  }
+
+  console.log('labels', labels);
+
+  const usdData = pricesArray.map(price => price.bpi.USD.rate_float);
+  const gbpData = pricesArray.map(price => price.bpi.GBP.rate_float);
+  const eurData = pricesArray.map(price => price.bpi.EUR.rate_float);
 
   return {
     labels,
@@ -28,49 +52,127 @@ const generateChartData = (pricesArray) => {
       {
         label: 'USD',
         data: usdData,
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
+        backgroundColor: fullTailwindConfig.theme.colors.blue["300"],
+        borderColor: fullTailwindConfig.theme.colors.blue["600"],
+        borderWidth: 2,
       },
       {
         label: 'GBP',
         data: gbpData,
-        backgroundColor: 'rgba(192, 75, 192, 0.2)',
-        borderColor: 'rgba(192, 75, 192, 1)',
-        borderWidth: 1,
+        backgroundColor: fullTailwindConfig.theme.colors.red["300"],
+        borderColor: fullTailwindConfig.theme.colors.red["600"],
+        borderWidth: 2,
       },
       {
         label: 'EUR',
         data: eurData,
-        backgroundColor: 'rgba(192, 192, 75, 0.2)',
-        borderColor: 'rgba(192, 192, 75, 1)',
-        borderWidth: 1,
+        backgroundColor: fullTailwindConfig.theme.colors.green["300"],
+        borderColor: fullTailwindConfig.theme.colors.green["600"],
+        borderWidth: 2,
       }
     ]
   };
 };
 
-// Initialize reactive chart data
 const chartData = ref(generateChartData(props.prices));
 
-// Watch for changes in the prices prop and update chart data reactively
 watch(() => props.prices, (newPrices) => {
   chartData.value = generateChartData(newPrices);
 }, { deep: true });
 
+const myStyles = computed(() => {
+  return {
+    height: `350px`,
+    width: `100%`,
+    position: 'relative',
+    maxWidth: '100%',
+    color: fullTailwindConfig.theme.colors.white
+  };
+});
+
 const chartOptions = {
   responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      ticks: {
+        color: fullTailwindConfig.theme.colors.white,
+        color: fullTailwindConfig.theme.colors.white,
+        font: {
+          family: 'Montserrat',
+          size: 12,
+        },
+      },
+      grid: {
+        color: fullTailwindConfig.theme.colors.slate["400"],
+      },
+    },
+    y: {
+      ticks: {
+        color: fullTailwindConfig.theme.colors.white,
+        font: {
+          family: 'Montserrat',
+          size: 12,
+        },
+      },
+      grid: {
+        color: fullTailwindConfig.theme.colors.slate["400"],
+      },
+    },
+  },
   plugins: {
     legend: {
-      display: true
+      labels: {
+        color: fullTailwindConfig.theme.colors.white,
+        font: {
+          family: 'Montserrat',
+          size: 16,
+        },
+      },
+      position: 'top',
     },
     tooltip: {
-      enabled: true
-    }
+      titleFont: {
+        family: 'Montserrat',
+        size: 16,
+      },
+      bodyFont: {
+        family: 'Montserrat',
+        size: 14,
+      },
+      backgroundColor: fullTailwindConfig.theme.colors.blue["800"],
+      padding: 15
+    },
   }
 };
+
+const updateWindowSize = () => {
+  innerWidth.value = window.innerWidth;
+  innerHeight.value = window.innerHeight;
+
+  console.log('innerWidth', innerWidth);
+  console.log('innerHeight', innerHeight);
+};
+
+onMounted(() => {
+  window.addEventListener('resize', updateWindowSize);
+});
+
+// Clean up the event listener when the component is unmounted
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWindowSize);
+});
 </script>
 
 <template>
-  <Line :data="chartData" :options="chartOptions" />
+  <div class="tw-text-white tw-flex tw-flex-auto tw-flex-col tw-items-center animated fadeIn">
+
+    <div class="tw-flex tw-flex-auto tw-items-center">
+      <h2>Prices Chart</h2>
+    </div>
+
+    <div v-if="chartData" class="tw-flex tw-flex-auto tw-flex-grow tw-w-full animated fadeIn">
+      <Line :data="chartData" :options="chartOptions" :style="myStyles" />
+    </div>
+  </div>
 </template>

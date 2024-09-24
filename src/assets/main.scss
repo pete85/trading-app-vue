@@ -12,12 +12,12 @@ body {
 
 header {
   height: 70px;
-  background-color: theme('colors.slate.700');
+  background-color: theme('colors.slate.600');
 }
 
 footer {
   height: 100px;
-  background-color: theme('colors.slate.700');;
+  background-color: theme('colors.slate.600');;
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -25,7 +25,7 @@ footer {
 
 main {
   height: calc(100vh - 170px);
-  background-color: theme('colors.slate.300');;
+  background-color: theme('colors.slate.800');;
   overflow-y: auto;
   overflow-x: hidden;
 }
