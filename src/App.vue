@@ -46,7 +46,10 @@ const fetchData = async () => {
   try {
     const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
     const data: BitcoinPriceIndex = await response.json();
-    prices.value.push(data);
+
+    // Create a new array with the new data appended
+    prices.value = [...prices.value, data];
+
   } catch (error) {
     console.error('Error fetching data:', error);
   }

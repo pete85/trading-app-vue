@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@canvasjs/vue-charts": "^1.0.4",
+    "chart.js": "^4.4.4",
     "date-fns": "^4.1.0",
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "vue-chartjs": "^5.3.1"
   },
   "devDependencies": {
     "@types/node": "^22.6.1",
