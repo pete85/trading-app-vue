@@ -20,19 +20,16 @@ const isLoading = ref(true);
 // Auth0 integration
 const { loginWithRedirect, user, isAuthenticated, isLoading: authLoading } = useAuth0();
 
-// Update the loading state once authentication has completed
 watch(authLoading, (newValue) => {
   if (!newValue) {
-    isLoading.value = false; // Set loading to false when auth completes
+    isLoading.value = false;
   }
 });
 
-// Determine the current view to render
 const currentView = computed(() => {
   if (currentPath.value === '/dashboard' && !isAuthenticated.value && !isLoading.value) {
-    // Redirect to login if the user is not authenticated and auth process is complete
     loginWithRedirect();
-    return Home; // Optionally render Home or a placeholder while redirecting
+    return Home;
   }
   return routes[currentPath.value || '/'] || NotFound;
 });
@@ -61,7 +58,7 @@ window.addEventListener('popstate', () => {
 // Handle navigation logic
 const navigateTo = (path: string) => {
   if (path === '/dashboard' && !isAuthenticated.value && !isLoading.value) {
-    loginWithRedirect(); // Redirect to login if not authenticated
+    loginWithRedirect();
   } else {
     window.history.pushState({}, '', path);
     currentPath.value = path;
