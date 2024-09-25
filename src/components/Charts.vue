@@ -98,7 +98,6 @@ const chartOptions = {
     x: {
       ticks: {
         color: fullTailwindConfig.theme.colors.white,
-        color: fullTailwindConfig.theme.colors.white,
         font: {
           family: 'Montserrat',
           size: 12,
