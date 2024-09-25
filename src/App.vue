@@ -1,45 +1,18 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import {onMounted, ref} from 'vue';
 import Home from '@/components/Home.vue';
-import Login from "@/components/Login.vue";
-import Charts from "@/components/Charts.vue";
-import { BitcoinPriceIndex } from '@/interfaces/trading-data';
 
 const currentTime = ref(new Date().toLocaleTimeString());
-const prices = ref<BitcoinPriceIndex | []>([]);
-const latestPrice = computed(() => prices.value.length > 0 ? prices.value[prices.value.length - 1] : null);
 
 const updateTime = () => {
   currentTime.value = new Date().toLocaleTimeString();
   requestAnimationFrame(updateTime);
 };
 
-/**
- * Fetch prices data
- */
-const fetchData = async () => {
-  try {
-    const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
-    const data: BitcoinPriceIndex = await response.json();
-
-    // Limit array size to 10
-    if (prices.value.length >= 10) {
-      prices.value.shift(); // Remove the oldest data
-    }
-
-    prices.value = [...prices.value, data];
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
-
-
-// On component mount, fetch data and set an interval
 onMounted(() => {
-  fetchData(); // Fetch once on load
-  setInterval(fetchData, 25000); // Fetch every 20 seconds
   setInterval(updateTime, 1000);
 });
+
 </script>
 
 <template>
