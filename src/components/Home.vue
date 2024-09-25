@@ -108,6 +108,13 @@ const navigateTo = (path: string) => {
 
         <button
             class="tw-flex tw-items-center tw-justify-center tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-gap-2 tw-rounded-lg"
+            @click="navigateTo('https://vue-chartjs.org/')">
+          <font-awesome-icon :icon="['fas', 'chart-line']" />
+          <span>vue-chartjs</span>
+        </button>
+
+        <button
+            class="tw-flex tw-items-center tw-justify-center tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-gap-2 tw-rounded-lg"
             @click="navigateTo('https://auth0.com/')">
           <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']"/>
           <span>Auth0</span>
