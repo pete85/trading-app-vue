@@ -48,7 +48,7 @@ const navigateTo = (path: string) => {
           <li>Enter the following credentials:
             <ul>
               <li><strong>U</strong>: tradingapp@test.co.uk</li>
-              <li><strong>P</strong>: Tr@dingAPP2024</li>
+              <li><strong>P</strong>: Tr@d1ngAPP2024</li>
             </ul>
           </li>
           <li>Click "Log In."</li>
