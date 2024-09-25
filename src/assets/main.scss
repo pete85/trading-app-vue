@@ -47,3 +47,9 @@ main {
 .section-title {
   border-bottom: 2px solid theme('colors.slate.600');
 }
+
+.app-nav {
+  a {
+    color: theme('colors.slate.100');
+  }
+}

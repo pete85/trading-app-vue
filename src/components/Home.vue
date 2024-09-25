@@ -4,17 +4,6 @@ import {BitcoinPriceIndex} from "@/interfaces/trading-data";
 import Charts from "@/components/Charts.vue";
 import Prices from "@/components/Prices.vue";
 
-// const props = defineProps({
-//   latestPrice: {
-//     type: Object as () => BitcoinPriceIndex | null,
-//     default: null
-//   },
-//   prices: {
-//     type: Array,
-//     required: true
-//   }
-// });
-
 const prices = ref<BitcoinPriceIndex | []>([]);
 const latestPrice = computed(() => prices.value.length > 0 ? prices.value[prices.value.length - 1] : null);
 
