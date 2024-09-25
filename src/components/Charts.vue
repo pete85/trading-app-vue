@@ -83,9 +83,10 @@ watch(() => props.prices, (newPrices) => {
 const myStyles = computed(() => {
   return {
     height: `350px`,
-    width: `100%`,
+    width: `95%`,
     position: 'relative',
-    maxWidth: '100%',
+    maxWidth: '98%',
+    // maxHeight: '98%',
     color: fullTailwindConfig.theme.colors.white
   };
 });
@@ -165,13 +166,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="tw-text-white tw-flex tw-flex-auto tw-flex-col tw-items-center animated fadeIn">
+  <div class="tw-text-white tw-flex tw-flex-auto tw-flex-col tw-items-center tw-pb-12 animated fadeIn">
 
-    <div class="tw-flex tw-flex-auto tw-items-center">
+    <div class="tw-flex tw-flex-grow-0 tw-items-center tw-justify-center tw-mb-8 tw-w-full section-title">
       <h2>Prices Chart</h2>
     </div>
 
-    <div v-if="chartData" class="tw-flex tw-flex-auto tw-flex-grow tw-w-full animated fadeIn">
+    <div v-if="chartData" class="tw-flex tw-flex-auto tw-items-center tw-justify-center tw-flex-grow tw-w-full tw-px-8 animated fadeIn">
       <Line :data="chartData" :options="chartOptions" :style="myStyles" />
     </div>
   </div>

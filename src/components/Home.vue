@@ -49,17 +49,17 @@ const formattedEUR = computed(() => {
 <template>
   <div class="tw-text-white tw-flex tw-flex-auto tw-flex-col tw-items-center animated fadeIn">
 
-    <div class="tw-flex tw-flex-auto tw-items-center">
-      <h2>Latest Bitcoin Price</h2>
+    <div class="tw-flex tw-flex-grow-0 tw-items-center tw-justify-center tw-mb-8 tw-w-full section-title">
+      <h2>Bitcoin Price</h2>
     </div>
 
-    <div v-if="latestPrice" class="tw-flex tw-flex-auto tw-flex-col animated fadeIn">
+    <div v-if="latestPrice" class="tw-flex tw-flex-auto tw-flex-col tw-justify-center animated fadeIn">
 
-      <div class="prices-overview tw-flex tw-flex-col tw-flex-auto tw-gap-5 tw-items-center">
+      <div class="prices-overview tw-flex tw-flex-col tw-flex-auto tw-gap-2 tw-items-center tw-justify-center">
         <h4>{{ props.latestPrice.time.updated }}</h4>
         <h4>{{ props.latestPrice.time.updateduk }}</h4>
 
-        <div class="tw-flex tw-flex-auto tw-items-center tw-justify-between">
+        <div class="tw-flex tw-items-center tw-justify-between">
           <div class="tw-flex tw-w-20 tw-items-start tw-justify-start">
             <img src="../assets/images/great-britain-50.png" alt="UK flag"/>
           </div>
@@ -68,7 +68,7 @@ const formattedEUR = computed(() => {
           </div>
         </div>
 
-        <div class="tw-flex tw-flex-auto tw-items-center tw-justify-between">
+        <div class="tw-flex tw-items-center tw-justify-between">
           <div class="tw-flex tw-w-20 tw-items-start tw-justify-start">
             <img src="../assets/images/usa-50.png" alt="US flag"/>
           </div>
@@ -77,7 +77,7 @@ const formattedEUR = computed(() => {
           </div>
         </div>
 
-        <div class="tw-flex tw-flex-auto tw-items-center tw-justify-between">
+        <div class="tw-flex tw-items-center tw-justify-between">
           <div class="tw-flex tw-w-20 tw-items-start tw-justify-start">
             <img src="../assets/images/eu-48.png" alt="EU flag" class="tw-size-[50px]"/>
           </div>
