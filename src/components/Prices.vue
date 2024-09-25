@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {defineProps, computed} from 'vue';
-import {format, isValid, parseISO} from 'date-fns';
+import {computed, defineProps} from 'vue';
+import {format} from 'date-fns';
 import {BitcoinPriceIndex} from "@/interfaces/trading-data";
 import {parseCustomDate} from "@/utils/date-utils";
 import {formatCurrency} from "@/utils/currency-utils";

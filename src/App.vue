@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import {computed, onMounted, ref} from 'vue';
 import Home from '@/components/Home.vue';
+import Dashboard from "@/components/Dashboard.vue";
 import NotFound from "@/components/NotFound.vue";
 import {useAuth0} from '@auth0/auth0-vue';
 
 // Define routes
 const routes = {
-  '/': Home
+  '/': Home,
+  '/dashboard': Dashboard
 };
 
 // Track the current path (now using window.location.pathname)
@@ -16,6 +18,8 @@ const currentPath = ref(window.location.pathname);
 const currentView = computed(() => {
   return routes[currentPath.value || '/'] || NotFound;
 });
+
+const isActive = (path: string) => currentPath.value === `${path}`;
 
 const {loginWithRedirect, user, isAuthenticated} = useAuth0();
 
@@ -57,30 +61,38 @@ onMounted(() => {
     <div class="tw-flex tw-flex-auto tw-items-center tw-gap-3">
 
       <div class="tw-absolute tw-left-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-ml-5">
-        <button
-            class="tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-rounded-[50%] tw-size-12 tw-flex tw-items-center tw-justify-center tw-shadow-none"
-            @click="navigateTo('/')">
-          <font-awesome-icon :icon="['fas', 'home']"/>
-        </button>
+
+        <div class="app-nav">
+          <a href="/" :class="{'tw-text-slate-400 tw-opacity-50 tw-pointer-events-none': isActive('/'), 'tw-text-slate-200': !isActive('/')}"
+             @click="navigateTo('/')">Home</a> |
+          <a href="/dashboard"
+             :class="{'tw-text-slate-400 tw-opacity-50 tw-pointer-events-none': isActive('/dashboard'), 'tw-text-slate-200': !isActive('/dashboard')}"
+             @click="navigateTo('/dashboard')"
+          >Dashboard</a>
+        </div>
       </div>
 
       <div class="tw-p-1">
-        <img alt="Vue logo" class="logo" src="./assets/images/pete85_bulb.png"/>
+        <img alt="pete85 logo" class="logo" src="./assets/images/pete85_bulb.png"/>
       </div>
       <div class="tw-hidden md:tw-block">
         <h1 class="tw-mb-0 tw-text-white">Trading App</h1>
       </div>
       <div class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-mr-5" v-if="!isAuthenticated">
-        <button class="tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-rounded-[50%] tw-size-12 tw-flex tw-items-center tw-justify-center tw-shadow-none" @click="login">
-          <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']" />
+        <button
+            class="tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-rounded-[50%] tw-size-12 tw-flex tw-items-center tw-justify-center tw-shadow-none"
+            @click="login">
+          <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']"/>
         </button>
       </div>
 
-      <div class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-gap-3 tw-mr-5" v-if="isAuthenticated">
+      <div class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-gap-3 tw-mr-5"
+           v-if="isAuthenticated">
         <h4 class="tw-text-white tw-hidden md:tw-block">Hello {{ user.name }}</h4>
-        <button class="tw-bg-red-900 tw-text-white tw-py-1 tw-px-4 tw-rounded-[50%] tw-size-12 tw-flex tw-items-center tw-justify-center tw-shadow-none"
-                @click="logoutFromApp">
-          <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" />
+        <button
+            class="tw-bg-red-900 tw-text-white tw-py-1 tw-px-4 tw-rounded-[50%] tw-size-12 tw-flex tw-items-center tw-justify-center tw-shadow-none"
+            @click="logoutFromApp">
+          <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"/>
         </button>
       </div>
     </div>

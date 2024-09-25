@@ -2,13 +2,18 @@ import './assets/main.scss';
 import { createApp } from 'vue';
 import App from './App.vue';
 import { createAuth0 } from '@auth0/auth0-vue';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faArrowRightFromBracket, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faHome, faArrowRightFromBracket, faArrowRightToBracket, faServer, faSprayCan } from '@fortawesome/free-solid-svg-icons';
+import { faGithub, faVuejs } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faHome);
 library.add(faArrowRightFromBracket);
 library.add(faArrowRightToBracket);
+library.add(faGithub);
+library.add(faServer);
+library.add(faSprayCan);
+library.add(faVuejs);
 
 const app = createApp(App);
 app.use(
