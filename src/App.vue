@@ -57,8 +57,10 @@ onMounted(() => {
     <div class="tw-flex tw-flex-auto tw-items-center tw-gap-3">
 
       <div class="tw-absolute tw-left-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-ml-5">
-        <button class="tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-rounded-lg" @click="navigateTo('/')">
-          Home
+        <button
+            class="tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-rounded-[50%] tw-size-12 tw-flex tw-items-center tw-justify-center tw-shadow-none"
+            @click="navigateTo('/')">
+          <font-awesome-icon :icon="['fas', 'home']"/>
         </button>
       </div>
 
@@ -68,17 +70,17 @@ onMounted(() => {
       <div class="tw-hidden md:tw-block">
         <h1 class="tw-mb-0 tw-text-white">Trading App</h1>
       </div>
-      <div class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-mr-5">
-        <button class="tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-rounded-lg" @click="login">
-          Login
+      <div class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-mr-5" v-if="!isAuthenticated">
+        <button class="tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-rounded-[50%] tw-size-12 tw-flex tw-items-center tw-justify-center tw-shadow-none" @click="login">
+          <font-awesome-icon :icon="['fas', 'arrow-right-to-bracket']" />
         </button>
       </div>
 
-      <div class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-mr-5" v-if="isAuthenticated">
-        <p>{{user}}</p>
-        <button class="tw-bg-red-900 tw-text-white tw-py-1 tw-px-4 tw-rounded-lg"
+      <div class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-gap-3 tw-mr-5" v-if="isAuthenticated">
+        <h4 class="tw-text-white tw-hidden md:tw-block">Hello {{ user.name }}</h4>
+        <button class="tw-bg-red-900 tw-text-white tw-py-1 tw-px-4 tw-rounded-[50%] tw-size-12 tw-flex tw-items-center tw-justify-center tw-shadow-none"
                 @click="logoutFromApp">
-          Logout
+          <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" />
         </button>
       </div>
     </div>
