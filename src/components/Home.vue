@@ -7,11 +7,11 @@ const navigateTo = (path: string) => {
 <template>
   <div class="tw-text-white tw-flex tw-flex-auto tw-flex-col animated fadeIn">
 
-    <div class="tw-flex tw-flex-grow-0 tw-items-center tw-justify-center tw-mb-8 tw-w-full section-title">
+    <div class="tw-flex tw-flex-grow-0 tw-items-center tw-justify-center tw-mb-8 section-title">
       <h2>Welcome</h2>
     </div>
 
-    <div class="tw-flex tw-flex-auto tw-items-center tw-mb-4 tw-w-full">
+    <div class="tw-mb-4">
       <p>
         The Trading App is a Vue.js-based project designed to fetch and display real-time cryptocurrency data from an
         external API. It leverages Vue 3 for the frontend, along with Tailwind CSS for responsive and modern UI styling.
@@ -19,17 +19,17 @@ const navigateTo = (path: string) => {
       </p>
     </div>
 
-    <div class="tw-flex tw-flex-auto tw-items-center tw-mb-4 tw-w-full">
+    <div class="tw-mb-4">
       <p>
         The app is hosted on Hostinger's VPS and controlled via CyberPanel, with a self-signed SSL certificate in place.
         It is also deployed through Netlify for additional hosting, using configurations like _headers and _redirects
         files. Vite is used as the build tool, ensuring efficient bundling and fast development. Additionally, the app
-        fetches cryptocurrency prices from https://api.coindesk.com/v1/bpi/currentprice.json and updates at regular
+        fetches cryptocurrency prices from coindesk API and updates at regular
         intervals.
       </p>
     </div>
 
-    <div class="tw-flex tw-flex-auto tw-items-center tw-mb-8 tw-w-full">
+    <div class="tw-mb-8">
       <p>
         For visuals, the app includes a chart that displays price data, which is passed between components using props,
         and Tailwind CSS is applied for layout styling. A clock is planned for the footer, and authentication is managed
@@ -37,7 +37,7 @@ const navigateTo = (path: string) => {
       </p>
     </div>
 
-    <div class="tw-flex tw-flex-auto tw-items-center tw-justify-center tw-mb-8 tw-w-full">
+    <div class="tw-flex tw-flex-auto tw-items-center tw-justify-center tw-mb-8">
       <div class="tw-flex tw-flex-auto tw-flex-col tw-justify-center tw-items-center">
         <h3>How to use the app?</h3>
         <ol class="tw-flex tw-flex-col tw-gap-2">
@@ -58,7 +58,7 @@ const navigateTo = (path: string) => {
       </div>
     </div>
 
-    <div class="dashboard-description tw-flex tw-flex-auto tw-items-center tw-mb-8 tw-bg-slate-100 tw-text-slate-800 tw-p-5 tw-rounded-lg tw-shadow-slate400">
+    <div class="dashboard-description tw-flex tw-flex-auto tw-items-center tw-mb-8 tw-bg-slate-100 tw-text-slate-800 tw-p-5 tw-rounded-lg">
       <div>
         <h3>Dashboard</h3>
         <p>
@@ -75,9 +75,9 @@ const navigateTo = (path: string) => {
       </div>
     </div>
 
-    <div class="tw-flex tw-flex-auto tw-flex-col tw-justify-center tw-items-center tw-mb-8 tw-gap-5 tw-w-full">
+    <div class="tw-flex tw-flex-auto tw-flex-col tw-justify-center tw-items-center tw-mb-8 tw-gap-5">
       <h3>Useful links</h3>
-      <div class="tw-flex tw-flex-auto tw-flex-wrap tw-items-center tw-justify-center tw-mb-8 tw-gap-4 tw-w-full">
+      <div class="tw-flex tw-flex-auto tw-flex-wrap tw-items-center tw-justify-center tw-mb-8 tw-gap-4">
         <button
             class="tw-flex tw-items-center tw-justify-center tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-gap-2 tw-rounded-lg"
             @click="navigateTo('https://github.com/pete85/trading-app-vue')">

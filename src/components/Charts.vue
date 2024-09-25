@@ -165,7 +165,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="tw-text-white tw-flex tw-flex-auto tw-flex-col tw-items-center tw-pb-12 animated fadeIn">
+  <div class="tw-text-white tw-flex tw-flex-auto tw-flex-col tw-items-center tw-pb-12 tw-mb-4 lg:tw-mb-0  animated fadeIn">
 
     <div class="tw-flex tw-flex-grow-0 tw-items-center tw-justify-center tw-mb-8 tw-w-full section-title">
       <h2>Prices Chart</h2>

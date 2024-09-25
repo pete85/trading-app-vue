@@ -93,10 +93,10 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="tw-p-1">
+      <div class="tw-p-1 tw-hidden sm:tw-block">
         <img alt="pete85 logo" class="logo" src="./assets/images/pete85_bulb.png"/>
       </div>
-      <div class="tw-hidden md:tw-block">
+      <div class="tw-hidden lg:tw-block">
         <h1 class="tw-mb-0 tw-text-white">Trading App</h1>
       </div>
       <div class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-flex tw-items-center tw-mr-5" v-if="!isAuthenticated">
