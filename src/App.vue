@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {computed, onMounted, ref} from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import Home from '@/components/Home.vue';
 import Dashboard from "@/components/Dashboard.vue";
 import NotFound from "@/components/NotFound.vue";
-import {useAuth0} from '@auth0/auth0-vue';
+import { useAuth0 } from '@auth0/auth0-vue';
 
 // Define routes
 const routes = {
@@ -14,14 +14,31 @@ const routes = {
 // Track the current path (now using window.location.pathname)
 const currentPath = ref(window.location.pathname);
 
+// Add a loading state to track if authentication is still being processed
+const isLoading = ref(true);
+
+// Auth0 integration
+const { loginWithRedirect, user, isAuthenticated, isLoading: authLoading } = useAuth0();
+
+// Update the loading state once authentication has completed
+watch(authLoading, (newValue) => {
+  if (!newValue) {
+    isLoading.value = false; // Set loading to false when auth completes
+  }
+});
+
 // Determine the current view to render
 const currentView = computed(() => {
+  if (currentPath.value === '/dashboard' && !isAuthenticated.value && !isLoading.value) {
+    // Redirect to login if the user is not authenticated and auth process is complete
+    loginWithRedirect();
+    return Home; // Optionally render Home or a placeholder while redirecting
+  }
   return routes[currentPath.value || '/'] || NotFound;
 });
 
+// Track active state for links
 const isActive = (path: string) => currentPath.value === `${path}`;
-
-const {loginWithRedirect, user, isAuthenticated} = useAuth0();
 
 // Update current time every second
 const currentTime = ref(new Date().toLocaleTimeString());
@@ -30,21 +47,28 @@ const login = () => {
   loginWithRedirect();
 };
 
-const {logout} = useAuth0();
+const { logout } = useAuth0();
 
 const logoutFromApp = () => {
-  logout({logoutParams: {returnTo: window.location.origin}});
+  logout({ logoutParams: { returnTo: window.location.origin } });
 };
 
+// Handle URL changes
 window.addEventListener('popstate', () => {
   currentPath.value = window.location.pathname;
 });
 
+// Handle navigation logic
 const navigateTo = (path: string) => {
-  window.history.pushState({}, '', path);
-  currentPath.value = path;
+  if (path === '/dashboard' && !isAuthenticated.value && !isLoading.value) {
+    loginWithRedirect(); // Redirect to login if not authenticated
+  } else {
+    window.history.pushState({}, '', path);
+    currentPath.value = path;
+  }
 };
 
+// Update time function
 const updateTime = () => {
   currentTime.value = new Date().toLocaleTimeString();
   requestAnimationFrame(updateTime);

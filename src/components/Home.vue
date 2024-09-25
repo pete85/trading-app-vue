@@ -53,7 +53,25 @@ const navigateTo = (path: string) => {
           </li>
           <li>Click "Log In."</li>
           <li>You should now be authenticated and redirected back to the app.</li>
+          <li>Navigate to Dashboard</li>
         </ol>
+      </div>
+    </div>
+
+    <div class="dashboard-description tw-flex tw-flex-auto tw-items-center tw-mb-8 tw-bg-slate-100 tw-text-slate-800 tw-p-5 tw-rounded-lg tw-shadow-slate400">
+      <div>
+        <h3>Dashboard</h3>
+        <p>
+          In the Dashboard page of your app, cryptocurrency pricing data is displayed, with the latest price fetched
+          from an external API every 25 seconds. The chart visualizing the price trends is updated every minute, showing
+          a maximum of the last 5 prices at any time.
+        </p>
+        <ul class="tw-flex tw-flex-col tw-gap-2">
+          <li>The pricing data is fetched from the API at <strong>25-second intervals</strong>.</li>
+          <li>The chart displaying price trends is <strong>updated every minute</strong>, reflecting the most recent data.</li>
+          <li>The chart shows a maximum of the <strong>last 5 price points</strong>, removing the oldest price when a new one is added.</li>
+          <li>The page is part of a <strong>protected route</strong>, and users must be authenticated to access it. Non-authenticated users are redirected to the login page.</li>
+        </ul>
       </div>
     </div>
 
@@ -97,11 +115,12 @@ const navigateTo = (path: string) => {
 
         <button
             class="tw-flex tw-items-center tw-justify-center tw-bg-blue-600 tw-text-white tw-py-1 tw-px-4 tw-gap-2 tw-rounded-lg"
-            @click="navigateTo('https://pete85.com/#/')">
+            @click="navigateTo('https://pete85.com')">
           <img alt="pete85 logo" class="tw-w-5" src="../assets/images/pete85_bulb.png"/>
           <span>pete85</span>
         </button>
       </div>
     </div>
+
   </div>
 </template>
