@@ -45,12 +45,7 @@ const navigateTo = (path: string) => {
           </li>
           <li>Click on the "Login" button (top right corner).</li>
           <li>You will be redirected to the <strong>Auth0</strong> login page.</li>
-          <li>Enter the following credentials:
-            <ul>
-              <li><strong>U</strong>: tradingapp@test.co.uk</li>
-              <li><strong>P</strong>: Tr@d1ngAPP2024</li>
-            </ul>
-          </li>
+          <li>Enter login credentials (on request)</li>
           <li>Click "Log In."</li>
           <li>You should now be authenticated and redirected back to the app.</li>
           <li>Navigate to Dashboard</li>
