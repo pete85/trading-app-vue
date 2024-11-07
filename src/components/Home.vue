@@ -37,21 +37,21 @@ const navigateTo = (path: string) => {
       </p>
     </div>
 
-    <div class="tw-flex tw-flex-auto tw-items-center tw-justify-center tw-mb-8">
-      <div class="tw-flex tw-flex-auto tw-flex-col tw-justify-center tw-items-center">
-        <h3>How to use the app?</h3>
-        <ol class="tw-flex tw-flex-col tw-gap-2">
-          <li>Open the app in your browser at <a href="https://tradingapp.pete85.com" class="tw-text-amber-300">https://tradingapp.pete85.com</a>.
-          </li>
-          <li>Click on the "Login" button (top right corner).</li>
-          <li>You will be redirected to the <strong>Auth0</strong> login page.</li>
-          <li>Enter login credentials (on request)</li>
-          <li>Click "Log In."</li>
-          <li>You should now be authenticated and redirected back to the app.</li>
-          <li>Navigate to Dashboard</li>
-        </ol>
-      </div>
-    </div>
+<!--    <div class="tw-flex tw-flex-auto tw-items-center tw-justify-center tw-mb-8">-->
+<!--      <div class="tw-flex tw-flex-auto tw-flex-col tw-justify-center tw-items-center">-->
+<!--        <h3>How to use the app?</h3>-->
+<!--        <ol class="tw-flex tw-flex-col tw-gap-2">-->
+<!--          <li>Open the app in your browser at <a href="https://tradingapp.pete85.com" class="tw-text-amber-300">https://tradingapp.pete85.com</a>.-->
+<!--          </li>-->
+<!--          <li>Click on the "Login" button (top right corner).</li>-->
+<!--          <li>You will be redirected to the <strong>Auth0</strong> login page.</li>-->
+<!--          <li>Enter login credentials (on request)</li>-->
+<!--          <li>Click "Log In."</li>-->
+<!--          <li>You should now be authenticated and redirected back to the app.</li>-->
+<!--          <li>Navigate to Dashboard</li>-->
+<!--        </ol>-->
+<!--      </div>-->
+<!--    </div>-->
 
     <div class="dashboard-description tw-flex tw-flex-auto tw-items-center tw-mb-8 tw-bg-slate-100 tw-text-slate-800 tw-p-5 tw-rounded-lg">
       <div>
